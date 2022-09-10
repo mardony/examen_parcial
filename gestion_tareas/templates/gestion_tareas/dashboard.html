@@ -21,16 +21,25 @@
         <table class="table table-striped">
             <thead>
                 <th>Id</th>
-                <th>Tarea</th>
-                <th>Estado</th>
+                <th>Descripción</th>
+                <th>Fecha de creación</th>
+                <th>Fecha de inicio</th>
+                <th>Usuario Responsable</th>
+                <th>Estado de la tarea</th>
             </thead>
 
             <tbody>
-                <tr>
-                      <td>1</td>
-                      <td>Proyectoción casa</td>
-                      <td>Proceso</td>
-                </tr>
+                {% for tareas in objTareas %}
+                  <tr>
+                        <td>{{ tareas.id }}</td>
+                        <td>{{ tareas.Descripcion }}</td>
+                        <td>{{ tareas.fecha_creacion }}</td>
+                        <td>{{ tareas.fecha_entrega }}</td>
+                        <td>{{ tareas.usuario_responsable }}</td>
+                        <td>{{ tareas.estado_tarea }}</td>
+
+                  </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>

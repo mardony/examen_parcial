@@ -1,7 +1,7 @@
 
 from django.urls import reverse
 from django.shortcuts import render
-from gestion_tareas.models import usuario
+from gestion_tareas.models import usuario,tarea
 from django.http import HttpResponseRedirect
 
 # Create your views here.
@@ -33,7 +33,19 @@ def ingresar(request):
   return render (request,'gestion_tareas/ingresar.html')
 
 def dashboard(request):
-  return render(request,'gestion_tareas/dashboard.html')
+  tareas_totales = tarea.objects.all()
+
+
+  #Filtrar tareas de cada trabajador
+  lista_tareas=[]
+  mi_tarea=tarea.objects.filter(usuario_responsable="2")
+  for tareas in mi_tarea:
+      lista_tareas.append(tareas)
+
+  #fin de filtro de trabajadores
+  return render(request,'gestion_tareas/dashboard.html',{
+      'objTareas':lista_tareas,
+  })
 
 
 def detallarTareas(request):
